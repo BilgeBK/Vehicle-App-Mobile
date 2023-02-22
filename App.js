@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {createStackNavigator} from "react-navigation-stack";
+import {createAppContainer} from "react-navigation";
+import HomeScreen from './src/HomeScreen';
+import AllVehicles from "./src/AllVehicles";
+import AddVehicle from "./src/AddVehicle";
+import SearchVehicle from "./src/SearchVehicle";
+import CalendarAllVehicles from "./src/CalendarAllVehicles";
+import ViewDetail from "./src/ViewDetail";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {
+    Home : HomeScreen,
+    CalendarAllVehicles : CalendarAllVehicles,
+    //AllVehicles :AllVehicles,
+    AddVehicle :AddVehicle,
+    SearchVehicle : SearchVehicle,
+    ViewDetail : ViewDetail
   },
-});
+  {
+      initialRouteName:"Home",
+      defaultNavigationOptions: {
+        title: "Viis App",
+      },
+    
+  },
+);
+
+export default createAppContainer(navigator);
